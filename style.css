@@ -1,0 +1,212 @@
+/*// BASE STYLES //*/
+
+html,
+body {
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	margin: 0;
+	
+	transform: scale(0.9);
+
+	/* background: burlywood; */
+}
+
+body{
+clip-path: circle(50%);;
+}
+
+.grass,
+.sky,
+.road {
+	position: relative;
+}
+
+.sky {
+	height: 40%;
+	background-color: skyblue;
+	/* background: linear-gradient(to bottom, skyblue, white); */
+	animation: 15s ease-in 2s infinite night-day;
+}
+
+.grass {
+	height: 100%;
+	/* transform: perspective(100px) rotateZ(90deg) rotateY(-60.9deg); */
+
+	background-color: burlywood;
+	animation: 15s ease-in-out infinite dark-ground;
+}
+
+.road {
+	position: relative;
+	height: 30%;
+	background: dimgrey;
+	box-sizing: border-box;
+	border-top: 10px solid grey;
+	border-bottom: 10px solid grey;
+	width: 100%;
+	transform-style: preserve-3d;
+
+	transform: perspective(1000px) rotateZ(90deg) rotateY(-75.9deg);
+}
+
+.moon-container {
+	top: -15vmin;
+	right: 30%;
+	width: 10vmin;
+	height: 10vmin;
+	position: absolute;
+	animation: 15s ease-out infinite anim-moon;
+}
+
+.moon,
+.moon::after {
+	width: 12vmin;
+	height: 12vmin;
+	border-radius: 6vmin;
+	box-shadow: 2vmin 2vmin 0px 0px #f5f5f5;
+	background-color: transparent;
+}
+
+.moon::after {
+	content: "";
+	position: absolute;
+	top: 0.5rem;
+	left: -1rem;
+	filter: blur(10px);
+	transform: translate(1rem, -0.5rem);
+}
+
+.sun {
+	width: 25vmin;
+	height: 25vmin;
+	background: rgb(255, 150, 0);
+	background: radial-gradient(
+		circle,
+		rgba(255, 150, 0, 1) 0%,
+		rgba(255, 212, 0, 1) 50%
+	);
+	border-radius: 50%;
+	position: absolute;
+	bottom: -15vmin;
+	left: 50%;
+	transform: translateX(-50%);
+	filter: blur(20px);
+	animation: 15s linear infinite anim-sun;
+}
+
+.lines {
+	position: absolute;
+	width: 10vw;
+	height: 20px;
+	background: #f4b303;
+	left: 110%;
+	top: 50%;
+
+	opacity: 0;
+	z-index: 100;
+
+	animation: 500ms ease-in-out infinite anim-road;
+}
+
+.car {
+	width: 100%;
+	position: absolute;
+	bottom: -25px;
+	z-index: 15;
+	animation: 4s linear infinite anim-car;
+	
+}
+.car-body {
+	border-top-left-radius: 25%;
+	border-top-right-radius: 25%;
+	width: 100vw;
+	height: 25vmin;
+	margin: auto;
+	background: rgb(255, 0, 34);
+	position: absolute;
+	bottom: 2vmin;
+	z-index: 25;
+	right: 0;
+	left: 0;
+}
+.steering-wheel {
+	position: absolute;
+	left: 18vmin;
+	bottom: -31vmin;
+	width: 65vmin;
+	height: 65vmin;
+	border: 8vmin solid #252525;
+	border-radius: 50%;
+	box-sizing: border-box;
+	background: transparent;
+	z-index: 40;
+}
+
+@keyframes anim-car {
+	50% {
+		bottom: -15px;
+	}
+	100% {
+		bottom: -25px;
+	}
+}
+
+@keyframes anim-road {
+	from {
+		left: -10%;
+		opacity: 0;
+	}
+	to {
+		left: 110%;
+		opacity: 1;
+	}
+}
+
+@keyframes anim-sun {
+	30% {
+		bottom: -15vmin;
+	}
+	50% {
+		bottom: -40vmin;
+	}
+	80% {
+		bottom: -40vmin;
+	}
+}
+
+@keyframes anim-moon {
+	30% {
+		top: -15vmin;
+	}
+	50% {
+		top: 16vmin;
+	}
+	80% {
+		top: 16vmin;
+	}
+}
+
+@keyframes night-day {
+	0% {
+		background: skyblue;
+	}
+	50% {
+		background-color: rgb(34, 33, 33);
+	}
+	100% {
+		background-color: skyblue;
+	}
+}
+
+@keyframes dark-ground {
+	0% {
+		background-color: burlywood;
+	}
+	50% {
+		background-color: rgb(163, 123, 71);
+	}
+	100% {
+		background-color: burlywood;
+	}
+}
